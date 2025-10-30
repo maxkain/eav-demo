@@ -1,0 +1,2 @@
+maxkain_eav:
+    enable_orphaned_eavs_listener: true
