@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4c0967c596fa47097848d93c06e6253",
+    "content-hash": "6edfb712a79b58b95729c9f54f6cff25",
     "packages": [
         {
             "name": "composer/semver",
@@ -1375,6 +1375,56 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "maxkain/eav-bundle",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maxkain/eav-bundle.git",
+                "reference": "24db806240da48d03209b56d0caa4c1285ec0b06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maxkain/eav-bundle/zipball/24db806240da48d03209b56d0caa4c1285ec0b06",
+                "reference": "24db806240da48d03209b56d0caa4c1285ec0b06",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "suggest": {
+                "easycorp/easyadmin-bundle": "",
+                "symfony/dependency-injection": "",
+                "symfony/form": "",
+                "symfony/framework-bundle": "",
+                "symfony/http-foundation": "",
+                "symfony/orm-pack": "",
+                "symfony/translation": "",
+                "symfony/twig-bundle": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Maxkain\\EavBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxim Kainov",
+                    "email": "maxim.kainov@gmail.com"
+                }
+            ],
+            "description": "Implementation of EAV (Entity-Attribute-Value) pattern for PHP",
+            "support": {
+                "issues": "https://github.com/maxkain/eav-bundle/issues",
+                "source": "https://github.com/maxkain/eav-bundle/tree/v1.0.1"
+            },
+            "time": "2025-10-30T10:19:54+00:00"
         },
         {
             "name": "monolog/monolog",

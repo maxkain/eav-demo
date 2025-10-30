@@ -47,6 +47,9 @@
             "config/routes/easyadmin.yaml"
         ]
     },
+    "maxkain/eav-bundle": {
+        "version": "v1.0.1"
+    },
     "phpunit/phpunit": {
         "version": "12.3",
         "recipe": {

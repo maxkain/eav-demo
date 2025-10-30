@@ -18,6 +18,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.5",
         "easycorp/easyadmin-bundle": "^4.26",
+        "maxkain/eav-bundle": "^1.0",
         "phpdocumentor/reflection-docblock": "^5.6",
         "phpstan/phpdoc-parser": "^2.3",
         "symfony/asset": "7.3.*",
@@ -63,8 +64,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "Maxkain\\EavBundle\\": "package/maxkain/eav-bundle/src/"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
