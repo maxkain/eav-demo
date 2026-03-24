@@ -14,7 +14,7 @@ use App\Entity\Product\Category;
 use App\Entity\Product\Product;
 use App\Entity\Product\Tag;
 use Doctrine\ORM\EntityManagerInterface;
-use Maxkain\EavBundle\Bridge\Doctrine\EavQueryFactory;
+use Maxkain\EavBundle\Bridge\Doctrine\Query\EavQueryFactory;
 use Maxkain\EavBundle\Contracts\Entity\Tag\EavAttributeWithTagsInterface;
 use Maxkain\EavBundle\Inverter\EavInverterInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
