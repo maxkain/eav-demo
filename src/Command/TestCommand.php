@@ -64,29 +64,33 @@ class TestCommand extends Command
 
         if ($action == 'filter') {
             $multiEnumFilter = [
-                1060 => [10600]
+                22 => [212, 220]
             ];
 
             $enumFilter = [
-                634 => 6349,
+                1 => 10,
                 649 => 6499
             ];
-
+            $eavQueryFactory = $this->eavQueryFactory;
             $stopwatch->start('test');
-            $qb = $this->em->getRepository(Product::class)->createQueryBuilder('e')->select('COUNT(e.id)');
-            $this->eavQueryFactory->addEavFilters($qb, 'e', MultiEnumEav::class, $multiEnumFilter);
-            $this->eavQueryFactory->addEavFilters($qb, 'e', EnumEav::class, $enumFilter);
+            $qb = $this->em->getRepository(Product::class)->createQueryBuilder('e')->select('e.id');
+//            $eavQueryFactory->addEavFilters($qb, 'e', MultiEnumEav::class, $multiEnumFilter,
+//                orValueLogic: false);
+            $eavQueryFactory->addEavFilters($qb, 'e', EnumEav::class, $enumFilter,
+                orAttributeLogic: true);
+            $eavQueryFactory->addValueSelect($qb, 'e', 22, MultiEnumEav::class,
+                select: 'MIN(:value)',
+                as: 'HIDDEN :attributeName'
+            );
+            $attribute22Name = $eavQueryFactory->getAttributeName(MultiEnumEav::class, 22);
+            $qb->addOrderBy($attribute22Name, 'DESC');
             $stopwatch->lap('test');
+//            dd($qb->getDQL());
+//            dd($qb->getQuery()->getSQL());
 
-            $result = $qb->getQuery()->getSingleScalarResult();
-            $io->text($result);
-            $stopwatch->lap('test');
-
-            $qb = $this->em->getRepository(Product::class)->createQueryBuilder('e')->select('e.id')->setMaxResults(50);
-            $this->eavQueryFactory->addEavFilters($qb, 'e', MultiEnumEav::class, $multiEnumFilter);
-            $this->eavQueryFactory->addEavFilters($qb, 'e', EnumEav::class, $enumFilter);
-            $result = $qb->getQuery()->getSingleColumnResult();
-
+            $result = $qb->getQuery()->getArrayResult();
+            var_dump($result);
+//            $io->text($result);
             dump($stopwatch->stop('test')->getPeriods());
         }
 

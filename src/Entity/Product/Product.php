@@ -10,7 +10,6 @@ use App\Repository\Product\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
 use Maxkain\EavBundle\Contracts\Entity\Tag\EavEntityWithTagsInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -74,9 +73,9 @@ class Product implements EavEntityWithTagsInterface
         $this->multiEnumEavs = new ArrayCollection();
     }
 
-    public function getEavTags(string $tagFqcn): iterable
+    public function getEavTags(string $tagKey): iterable
     {
-        return match ($tagFqcn) {
+        return match ($tagKey) {
             Category::class => isset($this->category) ? [$this->category] : [],
             Tag::class => $this->tags,
             default => [],

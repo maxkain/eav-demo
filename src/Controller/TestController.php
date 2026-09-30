@@ -12,6 +12,7 @@ class TestController extends AbstractController
     #[Route('/', 'test')]
     public function test(Request $request): Response
     {
-        return $this->render('base.html.twig');
+        return new Response('Hello world');
+//        return $this->render('base.html.twig');
     }
 }
