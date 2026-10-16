@@ -21,19 +21,20 @@ class MultiEnumAttributeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            FormField::addColumn(6),
+            FormField::addColumn(4),
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             CollectionField::new('values')->useEntryCrudForm()->renderExpanded()
                 ->addCssClass('compact-ea-collection')
                 ->setFormTypeOption('entry_options', ['block_prefix' => 'compact_ea_collection_entry', 'label' => null])
             ,
-            FormField::addColumn(6),
+            FormField::addColumn(4),
             BooleanField::new('forAllTags'),
             CollectionField::new('tags')->useEntryCrudForm()->renderExpanded()
                 ->addCssClass('compact-ea-collection')
                 ->setFormTypeOption('entry_options', ['block_prefix' => 'compact_ea_collection_entry'])
             ,
+            FormField::addColumn(4),
             BooleanField::new('forAllCategories'),
             CollectionField::new('categories')->useEntryCrudForm()->renderExpanded()
                 ->addCssClass('compact-ea-collection')

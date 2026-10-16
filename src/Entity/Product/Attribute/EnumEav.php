@@ -11,7 +11,7 @@ use Maxkain\EavBundle\Contracts\Entity\EavEntityInterface;
 
 #[ORM\Entity(repositoryClass: EnumEavRepository::class)]
 #[ORM\Table('product_enum_eav')]
-#[ORM\UniqueConstraint(fields: ['entity', 'attribute'])]
+#[ORM\Index('idx_enum_eav', fields: ['entity', 'attribute'])]
 class EnumEav implements EavInterface
 {
     #[ORM\Id]

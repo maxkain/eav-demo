@@ -45,11 +45,18 @@ class MultiEnumAttribute implements EavEnumAttributeInterface, EavAttributeWithT
     private bool $forAllTags = true;
 
     #[ORM\Column]
-    private bool $forAllCategories = true;
+    private bool $forAllCategories = false;
 
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->values = new ArrayCollection();
     }
 
     public function isForAllEavTags(string $tagFqcn): bool
@@ -106,12 +113,6 @@ class MultiEnumAttribute implements EavEnumAttributeInterface, EavAttributeWithT
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->tags = new ArrayCollection();
-        $this->values = new ArrayCollection();
-    }
-
     public function getValues(): Collection
     {
         return $this->values;
@@ -132,6 +133,9 @@ class MultiEnumAttribute implements EavEnumAttributeInterface, EavAttributeWithT
         return $this;
     }
 
+    /**
+     * @return Collection<MultiEnumTag>
+     */
     public function getTags(): Collection
     {
         return $this->tags;

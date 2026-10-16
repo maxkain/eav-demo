@@ -28,6 +28,7 @@ class EnumAttributeCrudController extends AbstractCrudController
                 ->setFormTypeOption('entry_options', ['block_prefix' => 'compact_ea_collection_entry'])
             ,
             FormField::addColumn(6),
+            FormField::addFieldset(),
             BooleanField::new('forAllTags'),
             CollectionField::new('tags')->useEntryCrudForm()->renderExpanded()
                 ->addCssClass('compact-ea-collection')

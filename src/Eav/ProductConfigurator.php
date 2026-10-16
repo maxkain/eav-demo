@@ -21,7 +21,8 @@ use App\Entity\Product\Tag;
 use Maxkain\EavBundle\Options\EavConfiguratorInterface;
 use Maxkain\EavBundle\Options\EavOptions;
 use Maxkain\EavBundle\Options\EavOptionsInterface;
-use Maxkain\EavBundle\Options\PropertyMapping;
+use Maxkain\EavBundle\Tag\Options\EavTagOptions;
+use Maxkain\EavBundle\Tag\Options\TagPropertyMapping;
 
 class ProductConfigurator implements EavConfiguratorInterface
 {
@@ -30,29 +31,32 @@ class ProductConfigurator implements EavConfiguratorInterface
      */
     public function configure(): array
     {
-        $multiEnum = new EavOptions(
+        $multiEnumOptions = new EavOptions(
             eavFqcn: MultiEnumEav::class,
             entityFqcn: Product::class,
             attributeFqcn: MultiEnumAttribute::class,
             valueFqcn: MultiEnumValue::class,
             multiple: true,
-            tagFqcn: Tag::class,
-            attributeTagFqcn: MultiEnumTag::class,
-            multipleTags: true,
-            propertyMapping: new PropertyMapping(
-                entityTags: 'tags',
-                attributeForAllTags: 'forAllTags'
-            )
+            tagOptions: [
+                new EavTagOptions(
+                    tagFqcn: Tag::class,
+                    attributeTagFqcn: MultiEnumTag::class,
+                    multipleTags: true,
+                    propertyMapping: new TagPropertyMapping(
+                        entityTags: 'tags',
+                        attributeForAllTags: 'forAllTags'
+                    )
+                ),
+                new EavTagOptions(
+                    tagFqcn: Category::class,
+                    attributeTagFqcn: MultiEnumCategory::class,
+                    propertyMapping: new TagPropertyMapping(
+                        entityTag: 'category',
+                        attributeForAllTags: 'forAllCategories'
+                    )
+                )
+            ]
         );
-
-        $multiEnumCategory = (clone $multiEnum)
-            ->setTagFqcn(Category::class)
-            ->setAttributeTagFqcn(MultiEnumCategory::class)
-            ->setMultipleTags(false)
-            ->setPropertyMapping(new PropertyMapping(
-                entityTag: 'category',
-                attributeForAllTags: 'forAllCategories'
-            ));
 
         return [
             new EavOptions(
@@ -60,11 +64,15 @@ class ProductConfigurator implements EavConfiguratorInterface
                 entityFqcn: Product::class,
                 attributeFqcn: EnumAttribute::class,
                 valueFqcn: EnumValue::class,
-                tagFqcn: Category::class,
-                attributeTagFqcn: EnumTag::class
+                tagOptions: [
+                    new EavTagOptions(
+                        tagFqcn: Category::class,
+                        attributeTagFqcn: EnumTag::class
+                    )
+                ]
             ),
-            $multiEnum,
-            'multiEnumCategory' => $multiEnumCategory,
+            $multiEnumOptions,
+            'productMultiEnumSecondary' => (clone $multiEnumOptions)->setConvertItemsToArrays(true),
             new EavOptions(
                 eavFqcn: StringEav::class,
                 entityFqcn: Product::class,

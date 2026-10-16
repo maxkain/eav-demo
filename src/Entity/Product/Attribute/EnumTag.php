@@ -9,7 +9,7 @@ use Maxkain\EavBundle\Contracts\Entity\Tag\EavAttributeTagInterface;
 
 #[ORM\Entity(repositoryClass: EnumTagRepository::class)]
 #[ORM\Table(name: 'product_enum_attribute_tag')]
-#[ORM\UniqueConstraint(fields: ['attribute', 'tag'])]
+#[ORM\Index('idx_enum_tag', fields: ['attribute', 'tag'])]
 class EnumTag implements EavAttributeTagInterface
 {
     #[ORM\Id]

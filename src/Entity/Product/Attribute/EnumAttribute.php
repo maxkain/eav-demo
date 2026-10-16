@@ -22,11 +22,6 @@ class EnumAttribute implements EavEnumAttributeInterface, EavAttributeWithTagsIn
     #[ORM\Column]
     private string $name;
 
-    public function __toString(): string
-    {
-        return $this->name;
-    }
-
     /**
      * @var Collection<EnumValue>
      */
@@ -46,6 +41,11 @@ class EnumAttribute implements EavEnumAttributeInterface, EavAttributeWithTagsIn
     {
         $this->tags = new ArrayCollection();
         $this->values = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
     public function getEavTags(string $tagFqcn): iterable
@@ -98,6 +98,9 @@ class EnumAttribute implements EavEnumAttributeInterface, EavAttributeWithTagsIn
         return $this;
     }
 
+    /**
+     * @return Collection<EnumTag>
+     */
     public function getTags(): Collection
     {
         return $this->tags;

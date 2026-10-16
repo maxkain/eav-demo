@@ -26,16 +26,6 @@ when@test:
         dbal:
             # "TEST_TOKEN" is typically set by ParaTest
             dbname_suffix: '_test%env(default::TEST_TOKEN)%'
-        orm:
-            entity_managers:
-                default:
-                    mappings:
-                        MyBundleTests:
-                            type: attribute
-                            is_bundle: false
-                            dir: '%kernel.project_dir%/package/maxkain/eav-bundle/tests/Entity'
-                            prefix: 'Maxkain\EavBundle\Tests\Entity'
-                            alias: MaxkainEavBundleTests
 when@prod:
     doctrine:
         orm:

@@ -11,7 +11,7 @@ use Maxkain\EavBundle\Contracts\Entity\EavEntityInterface;
 
 #[ORM\Entity(repositoryClass: StringEavRepository::class)]
 #[ORM\Table('product_string_eav')]
-#[ORM\UniqueConstraint(fields: ['entity', 'attribute'])]
+#[ORM\Index('idx_string_eav', fields: ['entity', 'attribute'])]
 class StringEav implements EavInterface
 {
     #[ORM\Id]

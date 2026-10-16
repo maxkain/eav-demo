@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="dev@localhost" uuid="d33c102c-dbf1-4522-af48-2ac74ed8edac">
+    <data-source source="LOCAL" name="eav_bundle@localhost" uuid="d8bfcf07-56b2-4662-8af7-dba85c74c335">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306/dev</jdbc-url>
+      <jdbc-url>jdbc:mariadb://localhost:3306/eav_bundle</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="eav_bundle_test@localhost" uuid="dff91fb1-4533-4d2b-a0e2-48a35c88a1aa">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://localhost:3306/eav_bundle_test</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -10,7 +10,7 @@ use Maxkain\EavBundle\Contracts\Entity\EavInterface;
 
 #[ORM\Entity(repositoryClass: MultiStringEavRepository::class)]
 #[ORM\Table('product_multi_string_eav')]
-#[ORM\UniqueConstraint(fields: ['entity', 'attribute', 'value'])]
+#[ORM\Index('idx_multi_sting_eav', fields: ['entity', 'attribute', 'value'])]
 class MultiStringEav implements EavInterface
 {
     #[ORM\Id]

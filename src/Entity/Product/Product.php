@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Maxkain\EavBundle\Contracts\Entity\Tag\EavEntityWithTagsInterface;
+use Maxkain\EavBundle\Contracts\Entity\Tag\EavTagInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -73,12 +74,11 @@ class Product implements EavEntityWithTagsInterface
         $this->multiEnumEavs = new ArrayCollection();
     }
 
-    public function getEavTags(string $tagKey): iterable
+    public function getEavTags(string $tagFqcn): EavTagInterface|iterable|null
     {
-        return match ($tagKey) {
-            Category::class => isset($this->category) ? [$this->category] : [],
-            Tag::class => $this->tags,
-            default => [],
+        return match ($tagFqcn) {
+            Category::class => $this->category ?? null,
+            Tag::class => $this->tags
         };
     }
 
@@ -126,21 +126,33 @@ class Product implements EavEntityWithTagsInterface
         return $this;
     }
 
+    /**
+     * @return Collection<StringEav>
+     */
     public function getStringEavs(): Collection
     {
         return $this->stringEavs;
     }
 
+    /**
+     * @return Collection<MultiStringEav>
+     */
     public function getMultiStringEavs(): Collection
     {
         return $this->multiStringEavs;
     }
 
+    /**
+     * @return Collection<EnumEav>
+     */
     public function getEnumEavs(): Collection
     {
         return $this->enumEavs;
     }
 
+    /**
+     * @return Collection<MultiEnumEav>
+     */
     public function getMultiEnumEavs(): Collection
     {
         return $this->multiEnumEavs;

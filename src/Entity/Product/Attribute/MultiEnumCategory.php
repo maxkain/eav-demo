@@ -9,7 +9,7 @@ use Maxkain\EavBundle\Contracts\Entity\Tag\EavTagInterface;
 
 #[ORM\Entity(repositoryClass: MultiEnumCategoryRepository::class)]
 #[ORM\Table(name: 'product_multi_enum_attribute_category')]
-#[ORM\UniqueConstraint(fields: ['attribute', 'tag'])]
+#[ORM\Index('idx_multi_enum_category', fields: ['attribute', 'tag'])]
 class MultiEnumCategory
 {
     #[ORM\Id]

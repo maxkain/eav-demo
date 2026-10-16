@@ -1,0 +1,11 @@
+.ea-edit-form .flex-fill {
+    flex: 0 1 auto !important;
+    display: none;
+}
+.form-group.field-collection .accordion-item .form-group legend.col-form-label,
+.form-group.field-collection .accordion-item .form-group>label {
+    inline-size: 37%;
+}
+.form-column>.form-fieldset:last-child {
+    flex-grow: 0;
+}

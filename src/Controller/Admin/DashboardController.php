@@ -2,13 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Product\Attribute\EnumAttribute;
-use App\Entity\Product\Attribute\MultiEnumAttribute;
-use App\Entity\Product\Attribute\MultiStringAttribute;
-use App\Entity\Product\Category;
-use App\Entity\Product\Product;
-use App\Entity\Product\Attribute\StringAttribute;
-use App\Entity\Product\Tag;
+use App\Controller\Admin\Product\Attribute\EnumAttributeCrudController;
+use App\Controller\Admin\Product\Attribute\MultiEnumAttributeCrudController;
+use App\Controller\Admin\Product\Attribute\MultiStringAttributeCrudController;
+use App\Controller\Admin\Product\Attribute\StringAttributeCrudController;
+use App\Controller\Admin\Product\CategoryCrudController;
+use App\Controller\Admin\Product\ProductCrudController;
+use App\Controller\Admin\Product\TagCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -34,7 +34,9 @@ class DashboardController extends AbstractDashboardController
     public function configureAssets(): Assets
     {
         $assets = parent::configureAssets();
-        $assets->addCssFile('bundles/maxkaineav/styles/compact_ea_collection.css');
+        $assets
+            ->addCssFile('styles/admin.css')
+            ->addCssFile('bundles/maxkaineav/styles/compact_ea_collection.css');
 
         return $assets;
     }
@@ -42,7 +44,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Dev Local');
+            ->setTitle('EavBundle');
     }
 
     public function configureCrud(): Crud
@@ -64,13 +66,13 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::subMenu('Product', 'fas fa-list')->setSubItems([
-            MenuItem::linkToCrud('Product list', 'fas fa-list', Product::class),
-            MenuItem::linkToCrud('Category list', 'fas fa-list', Category::class),
-            MenuItem::linkToCrud('Tag list', 'fas fa-list', Tag::class),
-            MenuItem::linkToCrud('String Attributes', 'fas fa-list', StringAttribute::class),
-            MenuItem::linkToCrud('Multi string Attributes', 'fas fa-list', MultiStringAttribute::class),
-            MenuItem::linkToCrud('Enum Attributes', 'fas fa-list', EnumAttribute::class),
-            MenuItem::linkToCrud('Multi enum Attributes', 'fas fa-list', MultiEnumAttribute::class),
+            MenuItem::linkTo(ProductCrudController::class, 'Product list', 'fas fa-list'),
+            MenuItem::linkTo(CategoryCrudController::class, 'Category list', 'fas fa-list'),
+            MenuItem::linkTo(TagCrudController::class, 'Tag list', 'fas fa-list'),
+            MenuItem::linkTo(StringAttributeCrudController::class, 'String Attributes', 'fas fa-list'),
+            MenuItem::linkTo(MultiStringAttributeCrudController::class, 'Multi string Attributes', 'fas fa-list'),
+            MenuItem::linkTo(EnumAttributeCrudController::class, 'Enum Attributes', 'fas fa-list'),
+            MenuItem::linkTo(MultiEnumAttributeCrudController::class, 'Multi enum Attributes', 'fas fa-list'),
         ]);
     }
 }

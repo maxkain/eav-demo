@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/dev.local.iml" filepath="$PROJECT_DIR$/.idea/dev.local.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/eav-bundle.local.iml" filepath="$PROJECT_DIR$/.idea/eav-bundle.local.iml" />
     </modules>
   </component>
 </project>

@@ -8,7 +8,7 @@ use Maxkain\EavBundle\Contracts\Entity\EavValueInterface;
 
 #[ORM\Entity(repositoryClass: EnumValueRepository::class)]
 #[ORM\Table(name: 'product_enum_attribute_value')]
-#[ORM\UniqueConstraint(fields: ['attribute', 'title'])]
+#[ORM\Index('idx_enum_value', fields: ['attribute', 'title'])]
 class EnumValue implements EavValueInterface
 {
     #[ORM\Id]
