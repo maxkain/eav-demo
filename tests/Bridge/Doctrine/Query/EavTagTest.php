@@ -9,6 +9,7 @@ use App\Entity\Product\Attribute\MultiEnumEav;
 use App\Entity\Product\Category;
 use App\Testing\AppKernelTestCase;
 use Maxkain\EavBundle\Bridge\Doctrine\EventListener\OrphanedEavsListener;
+use Maxkain\EavBundle\Bridge\Doctrine\OrphanedEavs\OrphanedEavsCleaner;
 use Maxkain\EavBundle\Bridge\Doctrine\OrphanedEavs\OrphanedEavsObjectHandler;
 use Maxkain\EavBundle\Contracts\Entity\Tag\EavAttributeWithTagsInterface;
 
@@ -105,8 +106,8 @@ class EavTagTest extends AppKernelTestCase
     {
         $container = $this->getContainer();
         $objectHandler = $container->get(OrphanedEavsObjectHandler::class);
-        $listener = $container->get(OrphanedEavsListener::class);
-        $listener->setHandler($objectHandler);
+        $cleaner = $container->get(OrphanedEavsCleaner::class);
+        $cleaner->setHandler($objectHandler);
         $categories = $this->em->getRepository(Category::class)->findAll();
         foreach ($categories as $category) {
             if ($category->getId() > 10) {
