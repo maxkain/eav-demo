@@ -48,9 +48,9 @@ class EnumAttribute implements EavEnumAttributeInterface, EavAttributeWithTagsIn
         return $this->name;
     }
 
-    public function getEavTags(string $tagFqcn): iterable
+    public function getEavTags(string $tagKey): iterable
     {
-        return match ($tagFqcn) {
+        return match ($tagKey) {
             Category::class => $this->tags
         };
     }

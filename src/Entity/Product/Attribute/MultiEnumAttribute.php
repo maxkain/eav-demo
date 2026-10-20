@@ -67,9 +67,9 @@ class MultiEnumAttribute implements EavEnumAttributeInterface, EavAttributeWithT
         };
     }
 
-    public function getEavTags(string $tagFqcn): iterable
+    public function getEavTags(string $tagKey): iterable
     {
-        return match ($tagFqcn) {
+        return match ($tagKey) {
             Tag::class => $this->tags,
             Category::class => $this->categories
         };

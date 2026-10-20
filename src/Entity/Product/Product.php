@@ -74,9 +74,9 @@ class Product implements EavEntityWithTagsInterface
         $this->multiEnumEavs = new ArrayCollection();
     }
 
-    public function getEavTags(string $tagFqcn): EavTagInterface|iterable|null
+    public function getEavTags(string $tagKey): EavTagInterface|iterable|null
     {
-        return match ($tagFqcn) {
+        return match ($tagKey) {
             Category::class => $this->category ?? null,
             Tag::class => $this->tags
         };
