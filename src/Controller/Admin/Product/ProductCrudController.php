@@ -38,14 +38,14 @@ class ProductCrudController extends AbstractCrudController
             FormField::addTab('Attributes'),
             FormField::addColumn(6),
             FormField::addFieldset('Enum Eavs')->collapsible()->renderCollapsed(),
-            $this->eavFieldFactory->create('enumEavs', false, EnumEav::class),
+            $this->eavFieldFactory->create('enumEavs', false, EnumEav::class)->hideOnIndex(),
             FormField::addFieldset('String Eavs')->collapsible()->renderCollapsed(),
-            $this->eavFieldFactory->create('stringEavs', false, StringEav::class),
+            $this->eavFieldFactory->create('stringEavs', false, StringEav::class)->hideOnIndex(),
             FormField::addColumn(6),
             FormField::addFieldset('MultiEnum Eavs')->collapsible()->renderCollapsed(),
-            $this->eavFieldFactory->create('multiEnumEavs', false, MultiEnumEav::class),
+            $this->eavFieldFactory->create('multiEnumEavs', false, MultiEnumEav::class)->hideOnIndex(),
             FormField::addFieldset('MultiString Eavs')->collapsible()->renderCollapsed(),
-            $this->eavFieldFactory->create('multiStringEavs', false, MultiStringEav::class),
+            $this->eavFieldFactory->create('multiStringEavs', false, MultiStringEav::class)->hideOnIndex()
         ];
     }
 }
